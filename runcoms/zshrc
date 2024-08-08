@@ -24,9 +24,16 @@ export TERM=xterm-256color
 export DIBS_LOCAL="$HOME/Projects/Nike/RSVP/dw-dibs"
 export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig"
 export PATH=$HOME/.composer/vendor/bin:$PATH
-export PATH="/usr/local/opt/postgresql@13/bin:$PATH"
+export PATH=/opt/homebrew/opt/libpq/bin:$PATH
+export DISABLE_SPRING=true
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/libpq/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/libpq/lib/pkgconfig"
 
 #ALIASES
+
+alias grepe='grep -ri --exclude-dir={coverage,node_modules,log,tmp,.git,app/assets/builds,public}'
 
 alias trun='bundle exec torquebox run -J "\-Xmx2048m"'
 
@@ -38,7 +45,7 @@ alias dc="docker-compose"
 alias dcra="docker-compose run app"
 
 # Kubernetes cli
-alias k=kubectl
+# alias k=kubectl
 
 # Easier navigation: .., ..., ~ and -
 alias ..="cd .."
@@ -140,4 +147,25 @@ eval "$(direnv hook zsh)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Add kubernetes (kubectl) autocomplete permanently to your zsh shell
-[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
+# [[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
+
+# Source kiex, the elixir version system
+test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/eli/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/eli/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/eli/opt/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/eli/opt/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+# get the needed libs for pg on the path first
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
