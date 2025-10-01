@@ -30,6 +30,7 @@ export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/libpq/include"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/libpq/lib/pkgconfig"
+export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 
 #ALIASES
 
@@ -45,7 +46,7 @@ alias dc="docker-compose"
 alias dcra="docker-compose run app"
 
 # Kubernetes cli
-# alias k=kubectl
+alias k=kubectl
 
 # Easier navigation: .., ..., ~ and -
 alias ..="cd .."
@@ -83,6 +84,11 @@ alias c="tr -d '\n' | pbcopy"
 # Shortcuts
 alias d="cd ~/Documents/Dropbox"
 alias p="cd ~/Projects"
+alias cli="cd ~/Projects/RetailBenefits/rbx-cli"
+alias ios="cd ~/Projects/RetailBenefits/retail-benefits-ios"
+alias droid="cd ~/Projects/RetailBenefits/retail-benefits-android"
+alias tool="cd ~/Projects/RetailBenefits/rbx-toolbar"
+alias rbx="cd ~/Projects/RetailBenefits/rbx"
 alias g="git"
 alias gco='git co'
 alias gci='git ci'
@@ -95,8 +101,6 @@ alias mysql="/usr/local/mysql/bin/mysql"
 alias ls="ls -G"
 alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false"
 alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true"
-alias pgstart="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
-alias pgstop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
 alias gpsh="git push heroku master"
 alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 alias stage="gps;git push stage stage:master"
@@ -144,10 +148,7 @@ source ~/.tmuxinator.zsh
 eval "$(direnv hook zsh)"
 
 # Add fzf to your ctrl + r terminal reverse search
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# Add kubernetes (kubectl) autocomplete permanently to your zsh shell
-# [[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
+source <(fzf --zsh)
 
 # Source kiex, the elixir version system
 test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
@@ -172,3 +173,18 @@ export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# NVM support
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+export CPPFLAGS="-I/opt/homebrew/opt/openjdk@17/include"
+export ANDROID_NDK_HOME="/Users/eli/Library/Android/sdk/ndk/29.0.13599879"
+export JAVA_HOME="/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
+export PATH=$JAVA_HOME/bin:$PATH
+export IMAGEMAGICK_DIR="/opt/homebrew/bin/"
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/opt/homebrew/share/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/homebrew/share/google-cloud-sdk/path.zsh.inc'; fi
+# The next line enables shell command completion for gcloud.
+if [ -f '/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc'; fi
